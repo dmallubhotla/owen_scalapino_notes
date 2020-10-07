@@ -23,7 +23,8 @@
 
 \newcommand{\pf}{p_{\mathrm{F}}}
 \newcommand{\vf}{v_{\mathrm{F}}}
-\newcommand{\corr}{\mu^\ast}
+\newcommand{\corr}{\mu}
+\newcommand{\step}{\Theta}
 \DeclareMathOperator{\sgn}{sgn}
 
 \begin{document}
@@ -34,7 +35,50 @@ Let's look at how we can translate the Owen-Scalapino results (OS)\cite{OwenScal
 
 \section{Main results from OS} \label{sec:intro}
 
-The main results from OS 
+The main expressions of interest in the OS paper are their equations 6 and 7.
+The former is the modification to the gap equation with the ``chemical potential'' $\corr$:
+\begin{equation}
+	\left[ N(0) V \right]^{-1} = \int_{- \omega_D}^{\omega_D} \frac{\dd{\epsilon_k}}{\sqrt{\Delta^2 + \epsilon_k^2}} \tanh{\frac{\sqrt{\Delta^2 + \epsilon_k^2} - \corr}{2 T}}. \label{eq:gap}
+\end{equation}
+OS's equation 7 is the definition of a parameter $n$ measuring the excess quasiparticle density:
+\begin{equation}
+	n = \frac{1}{\Delta_0} \int_0^\infty \dd{\epsilon} \left( \frac{1}{1 + \exp(\frac{\sqrt{\Delta^2 + \epsilon_k^2} - \corr}{T})} - \frac{1}{1 + \exp(\frac{\sqrt{\Delta^2 + \epsilon_k^2}}{T})} \right). \label{eq:n}
+\end{equation}
+
+\subsection{Zero-temp limits} \label{subsec:zerotemp}
+It's useful to begin with the zero temperature limit of \cref{eq:n}.
+Without too much work, it's easy to see that
+\begin{equation}
+	\lim_{T\rightarrow 0} \frac{1}{1 + \exp\frac{A}{T}} = \begin{cases}
+		0 & A > 0 \\
+		1 & A < 0
+	\end{cases},
+\end{equation}
+or alternatively using the Heaviside step function $\step$,
+\begin{equation}
+	\lim_{T\rightarrow 0} \frac{1}{1 + \exp\frac{A}{T}} = \step(- A).
+\end{equation}
+This means that \cref{eq:n} can, in the zero temp limit, be written
+\begin{align}
+	n(T = 0) = \frac{1}{\Delta_0} \int_0^\infty \dd{\epsilon} \left(\step\left(\corr - \sqrt{\Delta^2 + \epsilon_k^2}\right) - \step\left(- \sqrt{\Delta^2 + \epsilon_k^2}\right) \right).
+\end{align}
+The second step function is always negative, so
+\begin{align}
+	n(T = 0) &= \frac{1}{\Delta_0} \int_0^\infty \dd{\epsilon} \step\left(\corr - \sqrt{\Delta^2 + \epsilon_k^2}\right) \\
+	&= \frac{1}{\Delta_0} \int_0^{\epsilon^\ast} \dd{\epsilon}  \\
+	&= \frac{\epsilon^\ast}{\Delta_0},
+\end{align}
+where $\epsilon^\ast$ is the value of $\epsilon$ where the step function becomes zero, so
+\begin{equation}
+	{\epsilon^\ast}^2 = \corr^2 - \Delta^2,
+\end{equation}
+meaning that
+\begin{equation}
+	n = \frac{\sqrt{\corr^2 - \Delta^2}}{\Delta_0},
+\end{equation}
+which is simply equation 9 in OS.
+
+We can look closer at 
 
 \printbibliography
 
